@@ -26,7 +26,7 @@ export default function Home() {
 
       <main>
         <h1 className="title">
-          WebAuthnn Login with <a href="https://cotter.app">Cotter!</a>
+          WebAuthn Login with <a href="https://cotter.app">Cotter!</a>
         </h1>
 
         <p className="description">
