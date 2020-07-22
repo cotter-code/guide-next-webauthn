@@ -2019,10 +2019,10 @@ cotter-token-js@^0.1.3:
     jwk-to-pem "^2.0.3"
     tweetnacl "^1.0.3"
 
-cotter@^0.3.4:
-  version "0.3.4"
-  resolved "https://registry.yarnpkg.com/cotter/-/cotter-0.3.4.tgz#77c06dff49ae8a1a3ff37c282cab5ae999e221b9"
-  integrity sha512-TAZabqj1uRuwGJlAcnDBJCpCC+xtrgNjB/DULaX3s6em7DNqEWdJmdDWFV/lfBSHBdPeunyigUMmMJZATokNlQ==
+cotter@^0.3.5:
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/cotter/-/cotter-0.3.5.tgz#be19da31f96a5a93aac09e1075099a461843a421"
+  integrity sha512-no5I/tYELfqzwB1whmig9xbN9yJOhQXY/DJe7dqvc5yhbq43ywwNWJv1iZXgX+f0NjxhVIuUcrQ7fqaaBQGgsA==
   dependencies:
     axios "^0.19.2"
     cotter-token-js "^0.1.3"
