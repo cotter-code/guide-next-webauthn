@@ -55,7 +55,8 @@ export default function Home() {
               email is verified.
             </li>
             <li>
-              Go to an <b>incognito tab</b> and open this URL again. Try
+              Go to an <b>incognito tab</b> and open this URL again. You need to{" "}
+              <b>allow third-party cookies</b> (eye icon on URL bar). Try
               logging-in with the same email, and you'll be prompted to login
               using WebAuthn.
             </li>
