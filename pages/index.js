@@ -1,63 +1,57 @@
-import Head from 'next/head'
+import Head from "next/head";
+import React, { useEffect, useState } from "react";
+import Cotter from "cotter"; //  1️⃣  Import Cotter
 
+const API_KEY_ID = "75a25558-c318-4fc1-81ad-5cc8b69051e8";
 export default function Home() {
+  const [payload, setpayload] = useState(null);
+  //  2️⃣ Initialize and show the form
+  useEffect(() => {
+    var cotter = new Cotter(API_KEY_ID); // 👈 Specify your API KEY ID here
+    cotter
+      .signInWithWebAuthnOrLink()
+      .showEmailForm()
+      .then((response) => {
+        setpayload(response); // show the response in our state
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <div className="container">
       <Head>
-        <title>Create Next App</title>
+        <title>WebAuthn Login</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
         <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          WebAuthnn Login with <a href="https://cotter.app">Cotter!</a>
         </h1>
 
         <p className="description">
-          Get started by editing <code>pages/index.js</code>
+          Login with TouchID or Windows Hello on your browser.
         </p>
 
-        <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+        <div
+          style={{
+            width: "60vw",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {/*  3️⃣  Put a <div> that will contain the form */}
+          <div id="cotter-form-container" style={{ width: 300, height: 300 }} />
 
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="card"
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="card"
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+          <pre style={{ width: "60vw" }}>
+            <code style={{ width: "60vw", lineHeight: 2, fontSize: 14 }}>
+              {JSON.stringify(payload, null, 4)}
+            </code>
+          </pre>
         </div>
       </main>
-
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
-        </a>
-      </footer>
 
       <style jsx>{`
         .container {
@@ -205,5 +199,5 @@ export default function Home() {
         }
       `}</style>
     </div>
-  )
+  );
 }

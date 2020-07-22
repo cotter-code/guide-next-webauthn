@@ -12,20 +12,61 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+**Use Chrome on a laptop that supports TouchID or Windows Hello to see the WebAuthn login in action**.
+
+List of supported browser:
+https://fidoalliance.org/fido2/fido2-web-authentication-webauthn/
+
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-## Learn More
+# WebAuthn
 
-To learn more about Next.js, take a look at the following resources:
+Login to websites using TouchID or Windows Hello.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### How it works
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. Login with your email. If you have never setup WebAuthn, you'll be prompted to enable TouchID or Windows Hello after your email is verified.
+2. Refresh and go to an **incognito tab**. Try logging-in with the same email, and you'll be prompted to login using WebAuthn.
 
-## Deploy on Vercel
+### Implementation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [Documentation](https://docs.cotter.app/quickstart-guides/react-webauthn)
+- [Full SDK Reference](https://docs.cotter.app/sdk-reference/web/sign-in-with-webauthn)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# guide-next-webauthn
+For React:
+
+```bash
+yarn add cotter
+```
+
+```javascript
+import React, { useEffect, useState } from "react";
+import Cotter from "cotter"; //  1️⃣  Import Cotter
+
+function App() {
+  const [payload, setpayload] = useState(null);
+
+  //  2️⃣ Initialize and show the form
+  useEffect(() => {
+    var cotter = new Cotter(API_KEY_ID); // 👈 Specify your API KEY ID here
+    cotter
+      .signInWithWebAuthnOrLink()
+      .showEmailForm()
+      .then((response) => {
+        setpayload(response); // show the response in our state
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  return (
+    <div>
+      {/*  3️⃣  Put a <div> that will contain the form */}
+      <div id="cotter-form-container" style={{ width: 300, height: 300 }} />
+
+      <pre>{JSON.stringify(payload, null, 4)}</pre>
+    </div>
+  );
+}
+
+export default App;
+```
