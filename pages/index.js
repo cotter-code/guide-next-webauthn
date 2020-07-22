@@ -44,10 +44,17 @@ export default function Home() {
         >
           {/*  3️⃣  Put a <div> that will contain the form */}
           <div id="cotter-form-container" style={{ width: 300, height: 300 }} />
+
+          <pre style={{ width: "60vw" }}>
+            <code style={{ width: "60vw", lineHeight: 2, fontSize: 14 }}>
+              Response: {JSON.stringify(payload, null, 4)}
+            </code>
+          </pre>
+          <h4>How to try WebAuthn:</h4>
           <ol style={{ width: 500, lineHeight: 1.8 }}>
             <li>
-              Make sure you're using <b>Chrome</b> on a laptop that supports
-              TouchID/Windows Hello.
+              Make sure you're using <b>Google Chrome</b> on a laptop that
+              supports TouchID/Windows Hello.
             </li>
             <li>
               Login with your email. If this is your first time logging-in,
@@ -61,11 +68,6 @@ export default function Home() {
               using WebAuthn.
             </li>
           </ol>
-          <pre style={{ width: "60vw" }}>
-            <code style={{ width: "60vw", lineHeight: 2, fontSize: 14 }}>
-              Response: {JSON.stringify(payload, null, 4)}
-            </code>
-          </pre>
         </div>
       </main>
 
